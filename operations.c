@@ -4,6 +4,7 @@ int main()
 	int a,b,c;
 	int d,e,f;
 	float g,h;
+	printf("Welcome to github!");
 	printf("Enter the numbers:");
 	scanf("%d %d %d",&a,&b,&c);
 	d=a+b+c;
