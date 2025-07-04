@@ -49,10 +49,11 @@ void insert_at_pos(int pos,int n1)
     printf("Enter the data to be inserted:\n");
     scanf("%d",&n1);
     struct list *new_node=create_node(n1);
-    if(pos==1)
+    if(pos==0)
     {
         new_node->next=head;
         head=new_node;
+	return;
     }
     for(;t!=NULL && i<pos;t=t->next,i++);
     new_node->next=t->next;
