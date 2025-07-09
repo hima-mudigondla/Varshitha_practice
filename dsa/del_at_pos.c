@@ -38,16 +38,50 @@ void display()
         printf("%d ",t->data);
     }
 }
-void del_beg()
-{
-    temp=head;
-    head=temp->next;
-    temp->next=NULL;
+void delete_at_position(int pos) {
+    if (head == NULL) {
+       
+        return;
+    }
+    if (pos == 0) {
+        struct list* temp = head;
+        head = head->next;
+        free(temp);
+        if (head == NULL) {
+           
+            tail = NULL;
+        }
+        return;
+    }
+
+    struct list* current = head;
+    for (int i = 1; i < pos - 1; i++) {
+        if (current == NULL || current->next == NULL) {
+            
+            return;
+        }
+        current = current->next;
+    }
+
+    
+    struct list* temp = current->next;
+    if (temp == NULL) {
+        
+        return;
+    }
+
+    current->next = temp->next;
+    if (current->next == NULL) {
+       
+        tail = current;
+    }
     free(temp);
 }
+
+
 int main()
 {
-    int n,val;
+    int n,val,pos;
     printf("Enter the number of values:\n");
     scanf("%d",&n);
     printf("Enter the elements:\n");
@@ -60,8 +94,10 @@ int main()
     printf("Linked list is:\n");
     display();
     printf("\n");
-    printf("Linked list after deleting first node:\n");
-    del_beg();
+    printf("enter the position to delete:\n");
+    scanf("%d",&pos);
+    printf("Linked list after deleting node:\n");
+    delete_at_position(pos);
     display();
     return 0;
 }

@@ -38,12 +38,27 @@ void display()
         printf("%d ",t->data);
     }
 }
-void del_beg()
+void del_end()
 {
-    temp=head;
-    head=temp->next;
-    temp->next=NULL;
-    free(temp);
+    if(head==NULL)
+    {
+        return;
+    }
+    if(head->next==NULL)
+    {
+        free(head);
+        head=NULL;
+        tail=NULL;
+        return;
+    }
+    struct list* current=head;
+    while(current->next->next!=NULL)
+    {
+        current=current->next;
+    }
+    free(current->next);
+    current->next=NULL;
+    tail=current;
 }
 int main()
 {
@@ -60,8 +75,8 @@ int main()
     printf("Linked list is:\n");
     display();
     printf("\n");
-    printf("Linked list after deleting first node:\n");
-    del_beg();
+    printf("Linked list after deleting last node:\n");
+    del_end();
     display();
     return 0;
 }
