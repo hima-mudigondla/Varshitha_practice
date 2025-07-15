@@ -71,6 +71,7 @@ void delete_at_position(int pos) {
     }
 
     current->next = temp->next;
+    temp->next=NULL;
     if (current->next == NULL) {
        
         tail = current;
