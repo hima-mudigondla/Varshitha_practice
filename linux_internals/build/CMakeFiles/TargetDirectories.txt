@@ -1,3 +1,0 @@
-/home/hima_varshitha/Varshitha_practice/linux_internals/build/CMakeFiles/edit_cache.dir
-/home/hima_varshitha/Varshitha_practice/linux_internals/build/CMakeFiles/rebuild_cache.dir
-/home/hima_varshitha/Varshitha_practice/linux_internals/build/CMakeFiles/execle.dir
