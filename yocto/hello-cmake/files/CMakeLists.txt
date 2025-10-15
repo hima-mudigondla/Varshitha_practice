@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16.3)
+project(files C)
+set(CMAKE_C_STANDARD 11)
+add_executable(hello hello.c)
+install(TARGETS hello DESTINATION bin)
