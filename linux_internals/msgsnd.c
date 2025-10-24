@@ -2,8 +2,7 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include <string.h>
-#include "msg_def.h"
-
+#include"msg_def.h"
 int main() {
     int msgid = msgget(KEY, 0666 | IPC_CREAT);
     if (msgid == -1) {
