@@ -2,7 +2,7 @@
 int main()
 {
 	char filename[256],ch;
-	int characters=0,lines=1,words=1;
+	int characters=0,lines=0,words=1;
 	printf("Enter the filename:\n");
 	scanf("%s",filename);
 	FILE *fp=fopen(filename,"r");
@@ -13,7 +13,10 @@ int main()
 	}
 	while((ch=fgetc(fp))!=EOF)
 	{
-		characters++;
+		if(ch!='\n'&&ch!='\0')
+		{
+			characters++;
+		}
 		if(ch=='\n')
 		{
 			lines++;
@@ -21,7 +24,7 @@ int main()
 		if(ch==' ')
 		{
 			words++;
-		}
+		} 
 	}
 	printf("Number of characters:%d\n",characters);
 	printf("Number of words:%d\n",words);
