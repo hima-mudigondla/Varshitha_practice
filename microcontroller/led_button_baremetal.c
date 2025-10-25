@@ -6,7 +6,7 @@ int main()
 	GPIOC->MODER&=~(3<<(13*2));
 	GPIOC->MODER|=(1<<(13*2));
 	GPIOA->MODER&=~(3<<(0*2));
-	GPIOA->PUPDR &= ~(3 << (0*2));
+	GPIOA->PUPDR&=~(3 << (0*2));
 	GPIOA->PUPDR|=(1 << (0*2));
 	while(1)
 	{
@@ -21,6 +21,3 @@ int main()
 	}
 	return 0;
 }
-
-
-
