@@ -23,7 +23,7 @@ int main()
 		exit(0);
 	}
 	printf("Parent %d waiting for child!\n",getpid());
-	pid_t waited=waitpid(pid2,&status,0);
+	pid_t waited=waitpid(pid1,&status,0);
 	if(waited==pid2)
 	{
 		if(WIFEXITED(status))
