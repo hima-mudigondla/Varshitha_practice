@@ -1,0 +1,77 @@
+-> Understanding of the schematic and data sheets of qcc744m board
+-> Done qcc744 board flashing and example code checking in both terminal and eclipse
+
+#include "qcc74x_mtimer.h"
+#include "board.h"
+
+#define DBG_TAG "MAIN"
+#include "log.h"
+
+int main(void)
+{
+    board_init();
+
+    while (1) {
+        LOG_F("hello world fatal\r\n");
+        LOG_E("hello world error\r\n");
+        LOG_W("hello world warning\r\n");
+        LOG_I("hello world information\r\n");
+        LOG_D("hello world debug\r\n");
+        LOG_T("hello world trace\r\n");
+        LOG_RF("hello world fatal raw\r\n");
+        LOG_RE("hello world error raw\r\n");
+        LOG_RW("hello world warning raw\r\n");
+        LOG_RI("hello world information raw\r\n");
+        LOG_RD("hello world debug raw\r\n");
+        LOG_RT("hello world trace raw\r\n");
+        qcc74x_mtimer_delay_ms(1000);
+    }
+}
+
+-> Done programs on led and led using button programs on qcc744 boards
+
+****LED******
+
+#include "qcc74x_gpio.h"
+#include "board.h"
+struct qcc74x_device_s *gpio;
+int main(void)
+{
+   board_init();
+   gpio = qcc74x_device_get_by_name("gpio");
+   printf("gpio output\r\n");
+   qcc74x_gpio_init(gpio, GPIO_PIN_0, GPIO_OUTPUT | GPIO_PULLUP | GPIO_SMT_EN | GPIO_DRV_0);
+   qcc74x_gpio_init(gpio, GPIO_PIN_1, GPIO_INPUT | GPIO_PULLUP | GPIO_SMT_EN | GPIO_DRV_0);
+   while (1) {
+       qcc74x_gpio_set(gpio, GPIO_PIN_0);
+       qcc74x_mtimer_delay_ms(2000);
+       qcc74x_gpio_reset(gpio, GPIO_PIN_0);
+       qcc74x_mtimer_delay_ms(2000);
+   }
+}
+
+******LED BUTTON*******
+
+#include "qcc74x_gpio.h"
+#include "board.h"
+struct qcc74x_device_s *gpio;
+int main(void)
+{
+   board_init();
+   gpio = qcc74x_device_get_by_name("gpio");
+   printf("gpio output\r\n");
+   qcc74x_gpio_init(gpio, GPIO_PIN_0, GPIO_OUTPUT | GPIO_PULLUP | GPIO_SMT_EN | GPIO_DRV_0);
+   qcc74x_gpio_init(gpio, GPIO_PIN_1, GPIO_INPUT | GPIO_PULLUP | GPIO_SMT_EN | GPIO_DRV_0);
+   while (1) {
+
+   	if(qcc74x_gpio_read(gpio, GPIO_PIN_1) == 0){
+   		qcc74x_gpio_set(gpio, GPIO_PIN_0);
+   	}
+   	else{
+   		qcc74x_gpio_reset(gpio, GPIO_PIN_0);
+   	}
+   }
+}
+
+
+-> Studied on i2c and understanding of i2c 
