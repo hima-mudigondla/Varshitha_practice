@@ -1,0 +1,11 @@
+[Unit]
+Description=HelloC Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hellocmake
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

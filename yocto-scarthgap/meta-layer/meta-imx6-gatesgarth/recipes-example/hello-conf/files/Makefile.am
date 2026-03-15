@@ -1,0 +1,2 @@
+bin_PROGRAMS=helloconf
+helloconf_SOURCES=hello.c

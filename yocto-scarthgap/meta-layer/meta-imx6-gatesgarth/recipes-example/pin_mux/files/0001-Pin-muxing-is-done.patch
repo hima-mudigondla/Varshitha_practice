@@ -1,0 +1,58 @@
+From 97591b4b08e94e83eeb3ab0646a4bc5725047c9d Mon Sep 17 00:00:00 2001
+From: hima-mudigondla <hima.mudigondla@gmail.com>
+Date: Tue, 11 Nov 2025 12:18:28 +0530
+Subject: [PATCH] Pin muxing is done
+
+---
+ arch/arm/boot/dts/mys-6ul-14x14-evk.dtsi | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/mys-6ul-14x14-evk.dtsi b/arch/arm/boot/dts/mys-6ul-14x14-evk.dtsi
+index 315e5ecf1..31877bab3 100755
+--- a/arch/arm/boot/dts/mys-6ul-14x14-evk.dtsi
++++ b/arch/arm/boot/dts/mys-6ul-14x14-evk.dtsi
+@@ -172,11 +172,29 @@ led0: cpu {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 
+-        led1: user {
++        	led1: user {
+ 			label = "user";
+ 			gpios = <&gpio5 2 GPIO_ACTIVE_LOW>;
+ 			default-state = "off";
+ 		};
++		
++		led2: user2 {
++                        label = "led2";          // /sys/class/leds/led2
++                        gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
++                        default-state = "off";
++			pinctrl-names = "default";
++	                pinctrl-0 = <&pinctrl_leds>;
++
++
++	        };
++		led3: user3{
++			label = "led3";
++			gpios = <&gpio1 21 GPIO_ACTIVE_LOW>;
++			default-state = "off";
++			pinctrl-names = "default";
++	                pinctrl-0 = <&pinctrl_leds>;
++
++		};
+ 	};
+ 
+ 	gpio-keys {
+@@ -775,7 +793,9 @@ pinctrl_leds: ledgrp {
+ 		fsl,pins = <
+             MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01 0x1b0b0
+             MX6UL_PAD_SNVS_TAMPER2__GPIO5_IO02 0x1b0b0
+-		>;
++	    MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20 0x1b0b0
++	    MX6UL_PAD_UART2_RX_DATA__GPIO1_IO21 0x1b0b0	
++	>;
+ 	};
+ 
+ 	pinctrl_gpio_key: keygrp {
+-- 
+2.25.1
+
